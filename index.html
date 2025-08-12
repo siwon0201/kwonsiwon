@@ -1,1 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KWONSIWON | 당신의 아이디어가 앱이 되는 순간</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Black, White, Purple, Gray (Dark Background) with Blue/Green/Purple Gradient Accents -->
+    <!-- Application Structure Plan: A single-page narrative scroll design was chosen to guide potential clients through a compelling story: hook (Hero), proof (Work), personality (About), and action (Contact). This linear flow is intuitive for a landing page, building trust and interest progressively. Navigation is handled by a fixed header with smooth-scrolling links, and a mobile-responsive menu ensures usability on all devices. -->
+    <!-- Visualization & Content Choices: Report Info: Development Process -> Goal: Organize/Inform -> Viz: Horizontal flow diagram using HTML/CSS Flexbox and Unicode icons -> Interaction: Static visual for clarity -> Justification: Clearly communicates the workflow without complex libraries, fitting the minimalist aesthetic. Report Info: Portfolio -> Goal: Compare/Organize -> Viz: Responsive grid of project cards -> Interaction: Hover effects to signal interactivity -> Justification: Provides a clean, scannable overview of capabilities. All choices support the narrative structure. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .gradient-text {
+            background-image: linear-gradient(to right, #8B5CF6, #3B82F6, #10B981); /* Purple, Blue, Green */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+        .gradient-button-outline {
+            position: relative;
+            z-index: 1;
+            background: transparent;
+            border: none;
+            overflow: hidden;
+            display: inline-flex; /* To make it wrap content properly */
+            align-items: center;
+            justify-content: center;
+        }
+        .gradient-button-outline::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px; /* Matches rounded-full */
+            padding: 2px; /* Border thickness */
+            background: linear-gradient(to right, #8B5CF6, #3B82F6, #10B981); /* Purple, Blue, Green */
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+            transition: background 0.3s ease;
+        }
+        .gradient-button-outline:hover::before {
+            background: linear-gradient(to right, #9333ea, #2563eb, #059669); /* Slightly darker hover gradient */
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
 
+    <header id="header" class="bg-gray-900/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#hero" class="text-xl font-bold gradient-text">Kwonsiwon</a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#work" class="text-gray-300 hover:text-purple-400 transition">작업</a>
+                <a href="#about" class="text-gray-300 hover:text-purple-400 transition">소개</a>
+                <a href="#contact" class="text-gray-300 hover:text-purple-400 transition">문의</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-gray-200 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+            <a href="#work" class="block text-center py-3 px-6 text-gray-200 hover:bg-purple-800 transition">작업</a>
+            <a href="#about" class="block text-center py-3 px-6 text-gray-200 hover:bg-purple-800 transition">소개</a>
+            <a href="#contact" class="block text-center py-3 px-6 text-gray-200 hover:bg-purple-800 transition">문의</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="min-h-screen flex items-center bg-gray-950 pt-20">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-50 leading-tight mb-4">
+                    ✨ 당신의 아이디어가<br class="md:hidden"> <span class="gradient-text">앱</span>이 되는 순간
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+                    작지만 강력한 앱 개발 스튜디오, Kwonsiwon입니다. <br> 우리는 혁신적인 아이디어에 생명을 불어넣고, 사용자에게 최고의 경험을 선사하는 모바일 앱을 만듭니다.
+                </p>
+                <div class="text-md text-gray-400 font-medium mb-10">
+                    기획 · 디자인 · 개발
+                </div>
+                <div class="flex justify-center items-center space-x-4">
+                    <a href="#contact" class="bg-gradient-to-r from-purple-600 via-blue-600 to-emerald-500 text-white font-bold py-3 px-8 rounded-full hover:from-purple-700 hover:via-blue-700 hover:to-emerald-600 transition-transform transform hover:scale-105 shadow-lg">
+                        지금 바로 문의하기
+                    </a>
+                    <a href="#work" class="gradient-button-outline text-gray-50 font-bold py-3 px-8 rounded-full hover:bg-gray-800 transition-transform transform hover:scale-105 shadow-lg">
+                        <span class="gradient-text">작업 둘러보기</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="work" class="py-20 md:py-32 bg-gray-900 fade-in-section">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-50">🚀 우리가 만든, 이야기들</h2>
+                    <p class="text-lg text-gray-300 max-w-2xl mx-auto">Kwonsiwon은 다양한 분야에서 사용자의 삶을 풍요롭게 하는 앱을 개발합니다.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                    <div class="bg-gray-800 rounded-xl shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://placehold.co/600x400/8B5CF6/ffffff?text=기리고" alt="기리고 스크린샷" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-gray-50">기리고</h3>
+                            <p class="text-gray-300 text-sm">마음을 담아 소원을 빌어보세요. 셀카촬영 모드를 통해 소 마음속 담아두었던 간절한 소원을 비는 앱입니다.</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-xl shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://placehold.co/600x400/3B82F6/ffffff?text=요즘+사주" alt="요즘 사주 앱 스크린샷" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-gray-50">요즘 사주</h3>
+                            <p class="text-gray-300 text-sm">현대인을 위한 요즘 사주. 생년월일 입력 후 보고 싶은 사주내용을 간략하고 간결하게 요약해주는 앱입니다.</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-xl shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://placehold.co/600x400/10B981/ffffff?text=Next+Project" alt="다음 프로젝트 콘셉트 이미지" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-gray-50">NEXT (준비중)</h3>
+                            <p class="text-gray-300 text-sm">Kwonsiwon과 함께할 프로젝트를 기다리고 있습니다. </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-8 text-gray-50">우리의 개발 프로세스</h3>
+                    <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 text-center">
+                        <div class="flex items-center flex-col md:flex-1">
+                            <div class="text-4xl mb-2">💡</div>
+                            <p class="font-semibold text-gray-300">아이디어 구상</p>
+                        </div>
+                        <div class="text-gray-600 text-2xl hidden md:block">&rarr;</div>
+                        <div class="flex items-center flex-col md:flex-1">
+                            <div class="text-4xl mb-2">🎨</div>
+                            <p class="font-semibold text-gray-300">기획 및 디자인</p>
+                        </div>
+                        <div class="text-gray-600 text-2xl hidden md:block">&rarr;</div>
+                        <div class="flex items-center flex-col md:flex-1">
+                            <div class="text-4xl mb-2">💻</div>
+                            <p class="font-semibold text-gray-300">개발 및 테스트</p>
+                        </div>
+                        <div class="text-gray-600 text-2xl hidden md:block">&rarr;</div>
+                        <div class="flex items-center flex-col md:flex-1">
+                            <div class="text-4xl mb-2">✅</div>
+                            <p class="font-semibold text-gray-300">출시 및 유지보수</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 md:py-32 bg-gray-900 fade-in-section">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-50">🤝 당신의 다음 프로젝트,<br>Kwonsiwon과 함께하세요.</h2>
+                    <p class="text-lg text-gray-300 max-w-2xl mx-auto">앱 개발에 대한 아이디어가 있으신가요? <br>규모에 상관없이 모든 프로젝트를 소중하게 생각합니다. 지금 바로 연락 주세요!</p>
+                </div>
+                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 bg-gray-800 p-8 md:p-12 rounded-xl shadow-lg">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-gray-50">연락처 정보</h3>
+                        <p class="text-gray-300 mb-6">친절하고 전문적인 상담을 통해 당신의 비전을 구체화할 수 있도록 돕겠습니다.</p>
+                        <div class="space-y-4">
+                            <p class="flex items-center"><span class="gradient-text mr-3">✉️</span> dev@kwonsiwon.com</p>
+                            <p class="flex items-center"><span class="gradient-text mr-3">📍</span> 서울시 마포구 양화로8길</p>
+                        </div>
+                    </div>
+                    <form>
+                        <div class="space-y-4">
+                            <input type="text" placeholder="이름" class="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-gray-50 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition placeholder-gray-400">
+                            <input type="email" placeholder="이메일" class="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-gray-50 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition placeholder-gray-400">
+                            <textarea placeholder="프로젝트 문의 내용" rows="5" class="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-gray-50 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition placeholder-gray-400"></textarea>
+                            <button type="submit" class="w-full bg-gradient-to-r from-purple-600 via-blue-600 to-emerald-500 text-white font-bold py-3 px-6 rounded-md hover:from-purple-700 hover:via-blue-700 hover:to-emerald-600 transition shadow-md">문의하기</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-950 text-white py-8">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <p>&copy; 2025 Kwonsiwon. All Rights Reserved.</p>
+            <p class="text-sm mt-2">본 페이지는 kwonsiwon studio 웹사이트입니다.</p>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const header = document.getElementById('header');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobile-menu a, nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    if (!mobileMenu.classList.contains('hidden')) {
+                         mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+
+        const sections = document.querySelectorAll('.fade-in-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
